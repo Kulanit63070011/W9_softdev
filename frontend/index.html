@@ -81,19 +81,19 @@
 </body>
 <script>
 	function previewImage(event) {
-		var preview = document.getElementById('preview');
+		var imgimg = document.getElementById('image');
 		var file = event.target.files[0];
 		var reader = new FileReader();
 
 		reader.onloadend = function (event) {
-			image = event.target.result;
-			img.src = reader.result;
+			imagimg = event.target.result;
+			imagimg.src = reader.result;
 		}
 
 		if (file) {
 			reader.readAsDataURL(file);
 		} else {
-			preview.src = "";
+			imagimg.src = "";
 		}
 	}
 	function convertImg(event) {
