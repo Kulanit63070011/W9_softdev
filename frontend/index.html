@@ -62,7 +62,7 @@
 			<input type="file" id="img" name="img" accept="image/*" onchange="previewImage(event)">
 		</form>
 		<img id="image" class="image" src="#" alt="image">
-		<img id="outputImg" class="outputImg" src="#" alt="outputImg">
+		<img id="outputImg" class="image" src="#" alt="outputImg">
 
 		<!-- Form inputs -->
 		<form>
@@ -102,7 +102,7 @@
 		const surname = lastname.value;
 		const numbers = id.value;
 		const image = imgapi;
-		console.log(image)
+		console.log('start')
 		const url = "http://54.243.11.110:8088/process-image"
 		fetch(url, {
 			method: 'POST',
