@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>My Form with Pictures</title>
+	<meta charset="UTF-8">
+	<style>
+		
+        body {
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+        font-style: italic;
+        font-weight: bold;
+        color: red;
+        text-align: center;
+        }
+
+		.container {
+			margin: auto;
+			padding: 20px;
+			background-color: #f2f2f2;
+			border-radius: 5px;
+			box-shadow: 0 0 5px rgba(0,0,0,0.3);
+            background-color: rgb(131, 191, 255);
+		}
+
+		/* input field */
+		input[type=text], select, textarea {
+			width: 90%;
+			padding: 12px;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			resize: vertical;
+		}
+
+		/* image containers */
+		.image-container {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			margin-bottom: 20px;
+		}
+
+		/* images */
+		.image {
+			max-width: 100%;
+			max-height: 200px;
+			border-radius: 5px;
+			box-shadow: 0 0 5px rgba(0,0,0,0.3);
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h1>My Form with Pictures</h1>
+
+		<!-- First image container -->
+			<form>
+				<label for="img">Select image:</label>
+				<input type="file" id="img" name="img" accept="image/*" onchange="previewImage(event)">
+			  </form>
+			  <img id="preview" class="image" src="#" alt="Preview">
+
+		<!-- Form inputs -->
+		<form>
+			<label for="name">Firstname:</label>
+			<input type="name" id="name" name="name" placeholder="กุลนิษฐ์" required>
+            <br>
+			<label for="email">Lastname:</label>
+			<input type="email" id="email" name="email" placeholder="จูงาม" required>
+            <br>
+			<label for="id">ID:</label>
+			<input type="id" id="email" name="id" placeholder="63070011" required>
+		</form>
+
+		<input type="submit" value="แปลง">
+	</div>
+</body>
+<script>
+	function previewImage(event) {
+	  var preview = document.getElementById('preview');
+	  var file = event.target.files[0];
+	  var reader = new FileReader();
+	
+	  reader.onloadend = function() {
+		preview.src = reader.result;
+	  }
+	
+	  if (file) {
+		reader.readAsDataURL(file);
+	  } else {
+		preview.src = "";
+	  }
+	}
+	</script>	
+</html>
