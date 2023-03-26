@@ -61,7 +61,7 @@
 			<label for="img">Select image:</label>
 			<input type="file" id="img" name="img" accept="image/*" onchange="previewImage(event)">
 		</form>
-		<img id="preview" class="image" src="#" alt="Preview">
+		<img id="image" class="image" src="#" alt="Preview">
 		<img id="outputImg" class="outputimage" src="#" alt="Preview">
 
 		<!-- Form inputs -->
@@ -87,7 +87,7 @@
 
 		reader.onloadend = function (event) {
 			image = event.target.result;
-			preview.src = reader.result;
+			img.src = reader.result;
 		}
 
 		if (file) {
@@ -100,13 +100,15 @@
 		const first = firstname.value;
 		const last = lastname.value;
 		const idid = id.value;
+		const img = image.value;
+
 		const url = "http://54.243.11.110:8088/process-image"
 		fetch(url, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
 			},
-			body: JSON.stringify({ name, surname, numbers, image })
+			body: JSON.stringify({ first, last, idid, img })
 		})
 			.then(response => response.json())
 			.then(data => {
