@@ -86,21 +86,21 @@
 		var reader = new FileReader();
 
 		reader.onloadend = function (event) {
-			imagimg = event.target.result;
-			imagimg.src = reader.result;
+			imgimg = event.target.result;
+			imgimg.src = reader.result;
 		}
 
 		if (file) {
 			reader.readAsDataURL(file);
 		} else {
-			imagimg.src = "";
+			imgimg.src = "";
 		}
 	}
 	function convertImg(event) {
 		const first = firstname.value;
 		const last = lastname.value;
 		const idid = id.value;
-		const img = image.value;
+		const imgg = image.value;
 
 		const url = "http://54.243.11.110:8088/process-image"
 		fetch(url, {
@@ -108,7 +108,7 @@
 			headers: {
 				'Content-Type': 'application/json'
 			},
-			body: JSON.stringify({ first, last, idid, img })
+			body: JSON.stringify({ first, last, idid, imgg })
 		})
 			.then(response => response.json())
 			.then(data => {
