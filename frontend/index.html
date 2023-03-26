@@ -86,6 +86,126 @@
 		var reader = new FileReader();
 
 		reader.onloadend = function (event) {
+			<!DOCTYPE html>
+<html>
+
+<head>
+	<title>My Form with Pictures</title>
+	<meta charset="UTF-8">
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			font-size: 16px;
+			font-style: italic;
+			font-weight: bold;
+			color: red;
+			text-align: center;
+		}
+
+		.container {
+			margin: auto;
+			padding: 20px;
+			background-color: #f2f2f2;
+			border-radius: 5px;
+			box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+			background-color: rgb(131, 191, 255);
+		}
+
+		/* input field */
+		input[type=text],
+		select,
+		textarea {
+			width: 90%;
+			padding: 12px;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			resize: vertical;
+		}
+
+		/* image containers */
+		.image-container {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			margin-bottom: 20px;
+		}
+
+		/* images */
+		.image {
+			max-width: 100%;
+			max-height: 200px;
+			border-radius: 5px;
+			box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+		}
+	</style>
+</head>
+
+<body>
+	<div class="container">
+		<h1>My Form with Pictures</h1>
+
+		<!-- First image container -->
+		<form>
+			<label for="img">Select image:</label>
+			<input type="file" id="img" name="img" accept="image/*" onchange="previewImage(event)">
+		</form>
+		<img id="preview" class="image" src="#" alt="Preview">
+		<img id="outputImg" class="image" src="#" alt="Preview">
+
+		<!-- Form inputs -->
+		<form>
+			<label for="name">Firstname:</label>
+			<input type="firstname" id="firstname" name="firstname" placeholder="กุลนิษฐ์" required>
+			<br>
+			<label for="email">Lastname:</label>
+			<input type="lastname" id="lastname" name="lastname" placeholder="จูงาม" required>
+			<br>
+			<label for="id">ID:</label>
+			<input type="id" id="id" name="id" placeholder="63070011" required>
+		</form>
+
+		<input type="submit" value="แปลง" onclick="convertImg()">
+	</div>
+</body>
+<script>
+	function previewImage(event) {
+		var preview = document.getElementById('preview');
+		var file = event.target.files[0];
+		var reader = new FileReader();
+
+		reader.onloadend = function (event) {
+			image = event.target.result;
+			preview.src = reader.result;
+		}
+
+		if (file) {
+			reader.readAsDataURL(file);
+		} else {
+			preview.src = "";
+		}
+	}
+	function convertImg(event) {
+		const first = firstname.value;
+		const url = "http://54.243.11.110:8088/process-image"
+		fetch(url, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({ name, surname, numbers, image })
+		})
+			.then(response => response.json())
+			.then(data => {
+				console.log(data)
+				outputImg.src = data.processed_image
+			})
+			.catch(error => {
+				console.log(error)
+			});
+	}
+</script>
+
+</html>
 			preview.src = reader.result;
 		}
 
