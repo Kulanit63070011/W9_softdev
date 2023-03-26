@@ -62,7 +62,7 @@
 			<input type="file" id="img" name="img" accept="image/*" onchange="previewImage(event)">
 		</form>
 		<img id="image" class="image" src="#" alt="image">
-		<img id="outputImg" class="outputimage" src="#" alt="outputImg">
+		<img id="outputImg" class="outputImg" src="#" alt="outputImg">
 
 		<!-- Form inputs -->
 		<form>
@@ -80,14 +80,15 @@
 	</div>
 </body>
 <script>
+	let imgapi = null
 	function previewImage(event) {
 		var imgimg = document.getElementById('image');
 		var file = event.target.files[0];
 		var reader = new FileReader();
 
 		reader.onloadend = function (event) {
-			imgimg = event.target.result;
-			imgimg.src = reader.result;
+			imgimg.src = event.target.result;
+			imgapi = event.target.result;
 		}
 
 		if (file) {
@@ -97,18 +98,18 @@
 		}
 	}
 	function convertImg(event) {
-		const first = firstname.value;
-		const last = lastname.value;
-		const idid = id.value;
-		const imgg = image.value;
-
+		const name = firstname.value;
+		const surname = lastname.value;
+		const numbers = id.value;
+		const image = imgapi;
+		console.log(image)
 		const url = "http://54.243.11.110:8088/process-image"
 		fetch(url, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
 			},
-			body: JSON.stringify({ first, last, idid, imgg })
+			body: JSON.stringify({ name, surname, numbers, image })
 		})
 			.then(response => response.json())
 			.then(data => {
