@@ -3,11 +3,11 @@ version: '3'
 services:
   backend:
     build:
-      context: ./Back-End
+      context: ./backend
       dockerfile: Dockerfile
     image: kulanit63070011/my-backend_image:1.0
   frontend:
     build:
-      context: ./Front-End
+      context: ./frontend
       dockerfile: Dockerfile
     image: kulanit63070011/my-frontend_image:1.0
